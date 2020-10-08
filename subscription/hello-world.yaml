@@ -14,7 +14,7 @@ metadata:
   namespace: hello-world-app
 spec:
   type: GitHub
-  pathname: https://gitlab.cee.redhat.com/cdoan/hello-world.git
+  pathname: https://github.com/cdoan1/hello-world.git
   # secretRef:
   #   name: hello-world-github-credentials
 ---
