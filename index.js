@@ -27,7 +27,7 @@ let index_page = `
         made with 💚 and 🍵
         </h2>
         <h2 class="subtitle">
-        proudly deployed by 🦊 GitLab CI 🛠 and hosted on OpenShift
+        proudly deployed by RHACM 🛠 and hosted on OpenShift
         </h2>                
       </div>
     </section>
