@@ -40,6 +40,7 @@ kind: Subscription
 metadata:
   annotations:
     apps.open-cluster-management.io/github-path: k8s
+    apps.open-cluster-management.io/github-branch: main
   name: hello-world-app
   namespace: hello-world-app
   labels:
@@ -50,121 +51,6 @@ spec:
     placementRef:
       kind: PlacementRule
       name: dev-clusters
-  # packageOverrides:
-  # - packageName: kustomization
-  #   packageOverrides:
-  #   - value:
-  #       resources:
-  #       - hello-world
-  #       - mysql
-  #       patchesStrategicMerge:
-  #       - patch.yaml
-  #       namePrefix: demo-
-  #       vars:
-  #         - name: hello-world_SERVICE
-  #           objref:
-  #             kind: Service
-  #             name: hello-world
-  #             apiVersion: v1
-  #         - name: MYSQL_SERVICE
-  #           objref:
-  #             kind: Service
-  #             name: mysql
-  #             apiVersion: v1
-# ---
-# apiVersion: policy.open-cluster-management.io/v1
-# kind: Policy
-# metadata:
-#   name: policygroup-hello-world-app
-#   namespace: hello-world-app
-# spec:
-#   disabled: false
-#   remediationAction: enforce
-#   policy-templates:
-#   - objectDefinition:
-#       apiVersion: policy.open-cluster-management.io/v1
-#       kind: ConfigurationPolicy
-#       metadata:
-#         name: policy-hello-world-scc
-#       spec:
-#         namespaceSelector:
-#           exclude: ["kube-*"]
-#           include: ["hello-world-app"]
-#         object-templates:
-#           - complianceType: musthave
-#             objectDefinition:
-#               apiVersion: rbac.authorization.k8s.io/v1
-#               kind: Role
-#               metadata:
-#                 name: hello-world-app-scc
-#                 namespace: hello-world-app
-#               rules:
-#               - apiGroups:
-#                 - security.openshift.io
-#                 resourceNames:
-#                 - hello-world-app-scc
-#                 resources:
-#                 - securitycontextconstraints
-#                 verbs:
-#                 - use
-#           - complianceType: mustonlyhave
-#             objectDefinition:
-#               apiVersion: rbac.authorization.k8s.io/v1
-#               kind: RoleBinding
-#               metadata:
-#                 name: hello-world-app-scc
-#                 namespace: hello-world-app
-#               roleRef:
-#                 apiGroup: rbac.authorization.k8s.io
-#                 kind: Role
-#                 name: hello-world-app-scc
-#               subjects:
-#               - apiGroup: rbac.authorization.k8s.io
-#                 kind: Group
-#                 name: system:serviceaccounts:hello-world-app:default
-#           - complianceType: mustonlyhave
-#             objectDefinition:
-#               allowHostDirVolumePlugin: false
-#               allowHostIPC: false
-#               allowHostNetwork: false
-#               allowHostPID: false
-#               allowHostPorts: false
-#               allowPrivilegeEscalation: true
-#               allowPrivilegedContainer: false
-#               allowedCapabilities: null
-#               apiVersion: security.openshift.io/v1
-#               defaultAddCapabilities: null
-#               fsGroup:
-#                 type: RunAsAny
-#               groups:
-#               - system:cluster-admins
-#               kind: SecurityContextConstraints
-#               metadata:
-#                 annotations:
-#                   kubernetes.io/description: anyuid provides all features of the restricted SCC
-#                     but allows users to run with any UID and any GID.
-#                 name: hello-world-app-scc
-#                 labels:
-#                   app: hello-world-app-scc
-#               priority: 10
-#               readOnlyRootFilesystem: false
-#               requiredDropCapabilities:
-#               - MKNOD
-#               runAsUser:
-#                 type: RunAsAny
-#               seLinuxContext:
-#                 type: MustRunAs
-#               supplementalGroups:
-#                 type: RunAsAny
-#               users:
-#                 - 'system:serviceaccount:hello-world-app:default'
-#               volumes:
-#               - configMap
-#               - downwardAPI
-#               - emptyDir
-#               - persistentVolumeClaim
-#               - projected
-#               - secret
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
