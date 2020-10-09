@@ -25,9 +25,9 @@ spec:
           - name: "PORT"
             value: "4001"
         resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
           limits:
-            cpu: 200m
-            memory: 256Mi
-          request:
-            cpu: 200m
-            memory: 256Mi
+            memory: "128Mi"
+            cpu: "200m"
